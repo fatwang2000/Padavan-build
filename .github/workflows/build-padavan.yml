@@ -32,9 +32,8 @@ jobs:
         pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget
     - name: Install go
       run: |
-            mkdir /opt/rt-n56u
-            wget -c https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz -O - | sudo tar -xz -C /opt/rt-n56u
-            export PATH=$PATH:/opt/rt-n56u/go/bin
+            wget -c https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz -O - | sudo tar -xz -C /opt
+            export PATH=$PATH:/opt/go/bin
             source ~/.profile
 
     - name: Clone source code
