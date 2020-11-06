@@ -34,7 +34,10 @@ jobs:
       run: |
             wget -c https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz -O - | sudo tar -xz -C /opt
             export PATH=/opt/go/bin:$PATH
-            source ~/.profile
+            export GOPATH=/opt/go
+            export GOPATH=$PATH
+            export GOROOT=/opt/go
+             source ~/.profile
 
     - name: Clone source code
       run: |
@@ -42,8 +45,7 @@ jobs:
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
         mkdir -p /opt/images/
-        sed -i 's/V2ray_VERSION := 4.31.2/V2ray_VERSION := 4.32.0/g' /opt/rt-n56u/trunk/user/v2ray/Makefile
-        
+       
     - name: Build Firmware
       env:
         TNAME: RM2100
