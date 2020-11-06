@@ -33,7 +33,7 @@ jobs:
     - name: Install go
       run: |
             wget -c https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz -O - | sudo tar -xz -C /opt
-            export PATH=$PATH:/opt/go/bin
+            export PATH=/opt/go/bin:$PATH
             source ~/.profile
 
     - name: Clone source code
