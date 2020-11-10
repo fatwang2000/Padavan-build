@@ -30,22 +30,21 @@ jobs:
         sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd fakeroot \
         cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
         pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget
-    - name: Install go
-      run: |
-            wget -c https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz -O - | sudo tar -xz -C /opt
-            export PATH=/opt/go/bin:$PATH
-            export GOPATH=/opt/go
-            export GOPATH=$PATH
-            export GOROOT=/opt/go
-             source ~/.profile
-
+   
     - name: Clone source code
       run: |
         git clone --depth=1 https://github.com/chongshengB/rt-n56u.git /opt/rt-n56u
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
         mkdir -p /opt/images/
-       
+    - name: Crack golang & v2ray
+      run: |
+          cd /opt/rt-n56u/trunk/tools
+          sed -i 's/curl --create-dirs -L https://gomirrors.org/dl/go/go$(go_version).linux-amd64.tar.gz -o $(THISDIR)/go/go$(go_version).linux-amd64.tar.gz ; \/curl --create-dirs -L https://golang.org/dl/go$(go_version).linux-amd64.tar.gz -o $(THISDIR)/go/go$(go_version).linux-amd64.tar.gz ; \/g' Makefile
+          sed -i 's/go_version = 1.15.2/go_version = 1.15.4/g' Makefile
+          cd /opt/rt-n56u/trunk/user/v2ray
+          sed -i 's/V2ray_VERSION := 4.31.2/V2ray_VERSION := 4.32.1/g' Makefile
+          
     - name: Build Firmware
       env:
         TNAME: RM2100
