@@ -40,7 +40,7 @@ jobs:
     - name: Crack golang & v2ray
       run: |
           cd /opt/rt-n56u/trunk/tools
-          sed -i 's/curl --create-dirs -L https://gomirrors.org/dl/go/go$(go_version).linux-amd64.tar.gz -o $(THISDIR)/go/go$(go_version).linux-amd64.tar.gz ; \/curl --create-dirs -L https://golang.org/dl/go$(go_version).linux-amd64.tar.gz -o $(THISDIR)/go/go$(go_version).linux-amd64.tar.gz ; \/g' Makefile
+          sed -i 's/https:\/\/gomirrors.org\/dl\/go\//https:\/\/golang.org\/dl\//g' Makefile
           sed -i 's/go_version = 1.15.2/go_version = 1.15.4/g' Makefile
           cd /opt/rt-n56u/trunk/user/v2ray
           sed -i 's/V2ray_VERSION := 4.31.2/V2ray_VERSION := 4.32.1/g' Makefile
