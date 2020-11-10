@@ -44,6 +44,7 @@ jobs:
           sed -i 's/go_version = 1.15.2/go_version = 1.15.4/g' Makefile
           cd /opt/rt-n56u/trunk/user/v2ray
           sed -i 's/V2ray_VERSION := 4.31.2/V2ray_VERSION := 4.32.1/g' Makefile
+          sed -i 's/https:\/\/codeload.github.com\/v2ray/https:\/\/codeload.github.com\/v2fly/g' Makefile
           
     - name: Build Firmware
       env:
