@@ -36,19 +36,6 @@ jobs:
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
         mkdir -p /opt/images/
-        
-    - name: Crack Config files
-      run: |
-        cd /opt/rt-n56u/trunk/tools
-        sed -i 's/go_version = 1.15.2/go_version = 1.15.4/g' Makefile
-        sed -i 's/gomirrors.org\/dl\/go/golang.org\/dl/g' Makefile
-        make
-        cd /opt/rt-n56u/trunk/user/v2ray
-        sed -i '5d' Makefile
-        sed -i '4a V2ray_VERSION := 4.32.1' Makefile
-        sed -i 's/codeload.github.com\/v2ray/codeload.github.com\/v2fly/g' Makefile
-        cat Makefile
-            
     - name: Build Firmware
       env:
         TNAME: RM2100
